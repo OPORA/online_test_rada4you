@@ -75,6 +75,6 @@ io.on('connection', function(socket){
   });
 });
 //Start web server
-http.listen(3000, function () {
+http.listen(3000, 'localhost', function () {
   console.log('Example app listening on port 3000!');
 });
