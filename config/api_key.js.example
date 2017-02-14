@@ -1,0 +1,3 @@
+var key = "API KEY for https://rada4you.org/";
+
+module.exports.key = key;
