@@ -43,26 +43,25 @@ router.use('/',function(req, res, next) {
                     // console.log(mp);
                 });
             });
-            max_points  = data.mps[0].map(function (i) { return i.max_points});
-            max_point =  (getMaxOfArray(max_points)/3) * 2;
-            mps = data.mps[0].filter(function (mp) { return mp.max_points >= max_point });
+            var max_points  = data.mps[0].map(function (i) { return i.max_points});
+            var max_point =  (getMaxOfArray(max_points)/3) * 2;
+            var mps = data.mps[0].filter(function (mp) { return mp.max_points >= max_point });
             // sort percent, presence_percent
             mps.sort(function(a, b) {
                 return (a.percent<b.percent) - (b.percent<a.percent) || (a.presence_percent<b.presence_percent) - (b.presence_percent<a.presence_percent);
             });
             //------
-            sart_mps = mps.slice(0, 5);
-            end_mps = mps.slice(-5);
+            var sart_mps = mps.slice(0, 5);
+            var end_mps = mps.slice(-5);
             // Return result in web page;
             res.send({head: sart_mps, foter: end_mps});
         });
     }
     function checkResult(data, callback) {
-        res_mp = {};
+        var res_mp = {};
         res_mp.policy =[];
         res_mp.changer_array = [];
         res_mp.mps = [];
-        changer_array = [];
         var itemsProcessed = 0;
         data.forEach(function (item, index, array) {
             itemsProcessed++;

@@ -65,7 +65,7 @@ io.on('connection', function(socket){
           // console.log(query[i].question); 
         }    
         else {
-          text = "The End :)"
+          var text = "The End :)"
           io.to(user_id).emit('finish message', text);
           var destination = '/result?test='+ user_id;
           io.to(user_id).emit('redirect', destination);
