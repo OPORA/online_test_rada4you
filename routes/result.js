@@ -8,7 +8,7 @@ var getMaxOfArray = require('./../lib/getMaxOfArray');
 router.use('/',function(req, res, next) {
     getResult(req.query.test);
     function getResult(user_id) {
-        client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.user_id=?', user_id, readResult);
+        client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.id_query != -1 and a.id_query != -2 and a.user_id=?', user_id, readResult);
     }
     function readResult(error, result, fields) {
         if (error) throw error;

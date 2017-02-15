@@ -3,7 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var client = require("./config/mysql");
-var result = require("./routes/result")
+var result = require("./routes/result");
+require('events').EventEmitter.prototype._maxListeners = 0;
 app.use(express.static('public'));
 app.set('views', './views');
 app.set('view engine', 'jade');
@@ -18,6 +19,18 @@ io.on('connection', function(socket){
      var i = 0;
     function getQuery(cb) {
       socket.questions = [];
+      socket.questions.push( {
+        id: -1,
+        question: 'Виберіть Вашу стать',
+        policy: null,
+        policy_id: null,
+        agreement: null } );
+      socket.questions.push( {
+        id: -2,
+        question: 'Виберіть Ваш вік',
+        policy: null,
+        policy_id: null,
+        agreement: null } );
       var pending = 15;
       var policy = client.query('SELECT DISTINCT `policy_id` FROM `question` ORDER BY RAND() LIMIT 15'); 
       policy.on('error', function(err) {
@@ -29,7 +42,7 @@ io.on('connection', function(socket){
           throw err;
         });
         query.on('result', function(row) {
-
+ 
           socket.questions.push(row);
           if( 0 === --pending ) {
             cb(socket.questions); //callback if all queries are processed
@@ -37,8 +50,8 @@ io.on('connection', function(socket){
         });
       });
     }
-    function sendQuery(query) {
-      io.to(user_id).emit('question message', query);
+    function sendQuery(query, id) {
+      io.to(user_id).emit('question message', [query, id]);
     }
     function  saveAnswer(id_query, answer) {
       client.query('INSERT INTO answers SET ?', {id_query: id_query, answer: answer, user_id: socket.id}, function (error, results, fields) {
@@ -47,7 +60,8 @@ io.on('connection', function(socket){
       });
     }
     getQuery(function (query) {
-      sendQuery(query[i].question);
+      // console.log(query);
+      sendQuery(query[i].question, query[i].id );
       // console.log(i);
       // console.log(query[i].question);
       socket.on('answer message', function (result) {
@@ -58,9 +72,9 @@ io.on('connection', function(socket){
         }
 
         i++;
-        if (i < 15)
+        if (i < 17)
         {
-          sendQuery(query[i].question);
+          sendQuery(query[i].question, query[i].id);
           // console.log(i);
           // console.log(query[i].question); 
         }    

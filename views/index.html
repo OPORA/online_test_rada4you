@@ -50,9 +50,20 @@
     return false;
   });
   socket.on('question message', function(msg){
-    $('#messages').append($('<p>').text(msg + " ?"));
-    $('#messages p').append("<p><input name='answer' type='radio' value='1'> Підтримую!</p><p><input name='answer' type='radio' value='2'> Не підтримую</p>" +
-             "<p><input name='answer' type='radio'  value='3'> Не знаю</p><p><input name='answer' type='radio'  value='4'> Мені байдуже</p>");
+    $('#messages').append($('<p>').text(msg[0] + " ?"));
+    if (msg[1] == -1){
+      $('#messages p').append("<p><input name='answer' type='radio' value='1'> Жіноча</p><p><input name='answer' type='radio' value='2'> Чоловіка</p>" +
+              "<p><input name='answer' type='radio'  value='3'>Пропустити</p>");
+    } else if (msg[1] == -2){
+      $('#messages p').append("<p><input name='answer' type='radio' value='1'>До 18</p><p><input name='answer' type='radio' value='2'>18-25</p>" +
+              "<p><input name='answer' type='radio'  value='3'>26-35</p><p><input name='answer' type='radio'  value='4'>36-45</p>" +
+              "<p><input name='answer' type='radio' value='2'>46-60</p><p><input name='answer' type='radio' value='2'>більше 60</p>");
+    } else
+    {
+      $('#messages p').append("<p><input name='answer' type='radio' value='1'> Підтримую!</p><p><input name='answer' type='radio' value='2'> Не підтримую</p>" +
+              "<p><input name='answer' type='radio'  value='3'> Не знаю</p><p><input name='answer' type='radio'  value='4'> Мені байдуже</p>");
+    }
+
 
   });
   socket.on('redirect', function(destination) {
