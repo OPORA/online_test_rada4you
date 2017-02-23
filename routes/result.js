@@ -54,7 +54,9 @@ router.use('/',function(req, res, next) {
             var sart_mps = mps.slice(0, 5);
             var end_mps = mps.slice(-5);
             // Return result in web page;
-            res.send({head: sart_mps, foter: end_mps});
+            
+             // res.send({head: sart_mps, foter: end_mps});
+             res.render('result', {  head: sart_mps, foter: end_mps});
         });
     }
     function checkResult(data, callback) {

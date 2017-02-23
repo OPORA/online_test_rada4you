@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap</title>
-
+  <title>Який ти депутат? Вони голосують для тебе</title>
+  <link href="//code.cdn.mozilla.net/fonts/fira.css" media="screen" rel="stylesheet">
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!-- Style CSS-->
@@ -23,46 +23,82 @@
   </script>
 </head>
 <body>
-<div class="parent">
-  <div id="messages"></div>
-  <!--<input id="m" autocomplete="off" />-->
-  <button class="btn btn-success"  id ="start" >Start</button>
-  <button class="btn btn-info" id="next" style="display:none;">Next</button>
+<div class="container-fluid header">
+
 </div>
+<section class="container">
+  <section class="content">
+    <div id="messages"></div>
+    <!--<input id="m" autocomplete="off" />-->
+    <div class="row">
+      <div class="col-xs-12 heading">
+        <h1 class="text-center">Який ти депутат?</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <button class="btn btn-info btn-block btn-lg" id ="start" >Пройти тест</button>
+        <button class="btn btn-info btn-block btn-lg" id="next" style="display:none;">Далі</button>
+      </div>
+    </div>
+  </section>
+</section>
+<footer>
+
+</footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
+
   $("#start").on("click", function(){
+    $('body').css("background-color", "#ffea8a");
     $('p').remove();
+    $('h1').remove();
     $('#start').remove();
     socket.emit('start test', $('#m').val());
-    $('#next').show("slow")
+//    $('#next').show("slow")
     //socket.emit('question message', $('#m').val());
     return false;
   });
   $("#next").on("click", function(){
-    console.log($("input[type=radio][name=answer]:checked").val());
+//    console.log($("input[type=radio][name=answer]:checked").val());
     socket.emit('answer message', $("input[type=radio][name=answer]:checked").val());
-    $('p').remove();
+    $('.radio').remove();
+    $('h2').remove();
+    $('#next').hide("fast");
     return false;
   });
+
   socket.on('question message', function(msg){
-    $('#messages').append($('<p>').text(msg[0] + " ?"));
+    $('#messages').append($("<h2 class='query'>").text(msg[0] ));
+//    $('#messages').append($("<p></p>"));
     if (msg[1] == -1){
-      $('#messages p').append("<p><input name='answer' type='radio' value='1'> Жіноча</p><p><input name='answer' type='radio' value='2'> Чоловіка</p>" +
-              "<p><input name='answer' type='radio'  value='3'>Пропустити</p>");
+      $('#messages').append("<div class='radio'><input name='answer' id='male' type='radio' value='1'> " +
+              "<label for='male'>Жіноча</label><input name='answer' id='female' type='radio' value='2'><label for='female'>Чоловіча</label>" +
+              "<input name='answer' id='none' type='radio'  value='3'><label for='none'>Пропустити</div>");
     } else if (msg[1] == -2){
-      $('#messages p').append("<p><input name='answer' type='radio' value='1'>До 18</p><p><input name='answer' type='radio' value='2'>18-25</p>" +
-              "<p><input name='answer' type='radio'  value='3'>26-35</p><p><input name='answer' type='radio'  value='4'>36-45</p>" +
-              "<p><input name='answer' type='radio' value='2'>46-60</p><p><input name='answer' type='radio' value='2'>більше 60</p>");
+      $('#messages').append("<div class='radio'><input name='answer' id='18' type='radio' value='1'><label for='18'>До 18</label>" +
+              "<input name='answer' id='18-25' type='radio' value='2'><label for='18-25'>18-25</label>" +
+              "<input name='answer' id='26-35' type='radio'  value='3'><label for='26-35'>26-35</label>" +
+              "<input name='answer' id='36-45' type='radio'  value='4'><label for='36-45'>36-45</label>" +
+              "<input name='answer' id='46-60' type='radio' value='5'><label for='46-60'>46-60</label>" +
+              "<input name='answer' id='60' type='radio' value='6'><label for='60'>більше 60</label></div>");
     } else
     {
-      $('#messages p').append("<p><input name='answer' type='radio' value='1'> Підтримую!</p><p><input name='answer' type='radio' value='2'> Не підтримую</p>" +
-              "<p><input name='answer' type='radio'  value='3'> Не знаю</p><p><input name='answer' type='radio'  value='4'> Мені байдуже</p>");
+      $('#messages').append("<div class='radio'><input name='answer' id='first' type='radio' value='1'><label for='first'>Підтримую!</label>" +
+              "<input name='answer' id='second' type='radio' value='2'><label for='second'>Не підтримую</label>" +
+              "<input name='answer' id='third' type='radio'  value='3'><label for='third'>Не знаю</label>" +
+              "<input name='answer' id='fourth' type='radio'  value='4'><label for='fourth'>Мені байдуже</label></div>");
     }
+    $(":radio").on("click", function () {
+      if ($('#next').is(':hidden')) {
+        $('#next').show("fast");
+//        console.log("Click");
+      }
+    });
 
 
   });
@@ -70,7 +106,7 @@
     window.location.href = destination;
   });
   socket.on('finish message', function(msg){
-    $('#messages').append($('<p>').text(msg));
+    $('#messages').append($('<h1 class="query">').text(msg));
     $('#next').remove();
   });
 </script>
