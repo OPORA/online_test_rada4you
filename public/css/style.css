@@ -97,3 +97,7 @@ input[type=radio]:checked + label:before {
     text-align: center;
     line-height: 18px;
 }
+.ui-widget-header {
+    border: 1px solid #274486 !important;
+    background: #274486 !important;
+}
