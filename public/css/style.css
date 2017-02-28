@@ -27,9 +27,11 @@ footer {
 .content {
     margin: 200px auto;
     max-width: 600px;
+    max-height: 400px;
     #position: fixed;
 }
 #next {
+    margin-top: 25px;
     position: absolute;
 }
 .text-center {
@@ -100,4 +102,16 @@ input[type=radio]:checked + label:before {
 .ui-widget-header {
     border: 1px solid #274486 !important;
     background: #274486 !important;
+}
+.finish {
+    background-image: url(../img/hand.png);
+    background-size: contain;
+}
+.member-photo {
+    border-radius: 200px;
+}
+.selector {
+    margin: 0 auto;
+    max-width: 500px;
+
 }

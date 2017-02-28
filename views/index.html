@@ -28,6 +28,7 @@
 
 </div>
 <section class="container">
+  <div id="point"></div>
   <section class="content">
     <div id="messages"></div>
     <!--<input id="m" autocomplete="off" />-->
@@ -42,7 +43,6 @@
         <button class="btn btn-info btn-block btn-lg" id="next" style="display:none;">Далі</button>
       </div>
     </div>
-
   </section>
   <div class="row">
     <div class="selector"></div>
@@ -58,11 +58,13 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
-  var i=0;
+  var i=1;
   $("#start").on("click", function(){
     $('body').css("background-color", "#ffea8a");
+    $('.header').css("background-image", "url(img/hand.png)");
+    $('.header').css("background-size", "contain");
     $('p').remove();
-    $('h1').remove();
+    $('.heading').remove();
     $('#start').remove();
     socket.emit('start test', $('#m').val());
 //    $('#next').show("slow")
@@ -122,10 +124,7 @@
   });
   socket.on('finish message', function(msg){
     $('#messages').append($('<h1 class="query">').text(msg));
-    $( ".selector" ).progressbar( {
-      value: i,
-      max: 17
-    } );
+    $( ".selector" ).remove();
     $('#next').remove();
   });
 </script>
