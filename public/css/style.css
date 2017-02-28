@@ -9,11 +9,11 @@ html, body {
     color: #fff;
 }
 .header {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 60px;*/
     font-size: 24px;
     text-align: left;
-    background-color: #ffbb43;
+    background-color: #ffea8a;
 }
 footer {
     border-top: 16px #428bca solid;
@@ -38,10 +38,11 @@ footer {
     text-align: center;
 }
 .heading {
-    padding-bottom: 100px;
+    min-height: 100px;
 }
 h1 {
     font-size: 46px;
+    color: #034f84;
 
 }
 .query {
@@ -60,6 +61,7 @@ label {
     display: block;
     /*display: inline-block;*/
     /*cursor: pointer;*/
+    text-align: left;
     position: relative;
     left: 170px;
     padding-left: 25px;
@@ -86,7 +88,7 @@ label:before {
     position: absolute;
     left: 0;
     bottom: 1px;
-    background-color: #aaa;
+    background-color: #ffffff;
     box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
 }
 .radio label:before {
@@ -94,14 +96,14 @@ label:before {
 }
 input[type=radio]:checked + label:before {
     content: "\2022";
-    color: #ffbb43;
+    color:  #696969;
     font-size: 30px;
     text-align: center;
     line-height: 18px;
 }
 .ui-widget-header {
-    border: 1px solid #274486 !important;
-    background: #274486 !important;
+    border: 1px solid #ffbb43 !important;
+    background: #ffbb43 !important;
 }
 .finish {
     background-image: url(../img/hand.png);
@@ -114,4 +116,18 @@ input[type=radio]:checked + label:before {
     margin: 0 auto;
     max-width: 500px;
 
+}
+.left-head {
+    float: left;
+    background-image: url(../img/left.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 120px;
+}
+.right-head {
+
+    float: right;
+    background-image: url(../img/pointing-right.png);
+    background-size: contain;
 }

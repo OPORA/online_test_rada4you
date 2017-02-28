@@ -25,25 +25,27 @@
 </head>
 <body>
 <div class="container-fluid header">
-
+  <a href="https://rada4you.org/" class="navbar-brand">Вони голосують для тебе</a>
 </div>
-<section class="container">
+<section class="container-fluid">
   <div id="point"></div>
-  <section class="content">
-    <div id="messages"></div>
+  <!--<section class="content">-->
+    <div id="messages" class="text-center"></div>
     <!--<input id="m" autocomplete="off" />-->
-    <div class="row">
-      <div class="col-xs-12 heading">
+    <div class="left-head"></div>
+      <div class="heading">
+
         <h1 class="text-center">Який ти депутат?</h1>
       </div>
-    </div>
+
+    <div class="right-head"></div>
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2">
         <button class="btn btn-info btn-block btn-lg" id ="start" >Пройти тест</button>
         <button class="btn btn-info btn-block btn-lg" id="next" style="display:none;">Далі</button>
       </div>
     </div>
-  </section>
+  <!--</section>-->
   <div class="row">
     <div class="selector"></div>
   </div>
@@ -61,6 +63,7 @@
   var i=1;
   $("#start").on("click", function(){
     $('body').css("background-color", "#ffea8a");
+    $('.header').css("background-color", "#ffbb43");
     $('.header').css("background-image", "url(img/hand.png)");
     $('.header').css("background-size", "contain");
     $('p').remove();
