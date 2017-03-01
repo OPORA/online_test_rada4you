@@ -46,7 +46,7 @@ html, body {
 .right-head {
     display:inline-block;
     float: right;
-    position: absolute;
+    position: fixed;
     background-image: url(../img/right.png);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -88,7 +88,7 @@ html, body {
     margin: 0 auto;
 }
 
-@media screen and (min-width: 300px)  {
+@media (min-width: 768px)  {
     #result{
         width: 95%;
         margin: 30px auto;
@@ -117,7 +117,7 @@ html, body {
 
     }
 }
-@media screen and (min-width: 800px) {
+@media (min-width: 1300px)  {
     #result{
         width: 60%;
         margin: 30px auto;
