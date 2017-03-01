@@ -142,7 +142,6 @@ html, body {
 
 }
 #next {
-    position: absolute;
     display: block;
     margin: 0 auto;
 }
