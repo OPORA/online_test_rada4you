@@ -14,22 +14,31 @@ html
                 div.centre-head
                     h1.text-center Який ти депутат?
                 div.right-head
-            div#messages
+            div#result
                 div.row-image
                     - each val in head
-                        -  short_name= val.name.split(' ')
-                        div.imgage
-                            img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/"+ val.id +".jpg", class="member-photo")
-                            h3 #{short_name[0]} <br>#{short_name[1]}
+                        div.image
+                            a(href="https://rada4you.org/mp/"+ val.id target="_blank")
+                                img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/"+ val.id +".jpg", class="member-photo")
+                                p.text-center=val.first_name
+                                p.text-center=val.last_name
                 div.result
-                h2 Вітаємо! у тебе – ідеї, як в #{head[0].name} (#{head[0].party}), цінності як в #{head[1].name} (#{head[1].party}), переконання #{head[2].name} (#{head[2].party}), риторика #{head[3].name} (#{head[3].party}) і позиція як в #{head[4].name} (#{head[4].party}).
-
-                div.row
-                - each i in foter
-                    -  short_name= i.name.split(' ')
-                    div(class="col-xs-4 col-md-2")
-                        img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/" + i.id + ".jpg", class="member-photo")
-                        h3 #{short_name[0][0] + "." + short_name[1]}
+                    ul
+                        - each val in head
+                            -percent=(val.percent*100).toFixed(0)
+                            if isNaN(percent)
+                                -percent=0
+                            else
+                                -percent=percent
+                            //if percent != 0
+                            li #{val.first_name} #{val.last_name} (#{val.party}) #{percent} %
+                div.row-image
+                    - each i in foter
+                        div.image
+                            a(href="https://rada4you.org/mp/"+ i.id target="_blank")
+                                img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/" + i.id + ".jpg", class="member-photo")
+                                p.text-center=i.first_name
+                                p.text-center=i.last_name
         footer.footer
             p.text-center Підготовлено в рамках Програми USAID “РАДА: підзвітність, відповідальність, демократичне парламентське представництво”, що виконується Фондом Східна Європа.
                 <br> &copy; Громадянська мережа ОПОРА 2017
