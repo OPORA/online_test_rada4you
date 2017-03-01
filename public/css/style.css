@@ -261,9 +261,17 @@ input[type=radio]:checked + label:before {
 
 .member-photo {
     border-radius: 200px;
+    width: inherit;
 }
 .selector {
     margin: 0 auto;
     max-width: 500px;
     width: 60%;
+}
+.row-image {
+    display: -webkit-box;
+    width: 100%;
+}
+.image {
+    width: 20%;
 }
