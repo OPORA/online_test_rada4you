@@ -8,7 +8,7 @@
   <title>Який ти депутат? Вони голосують для тебе</title>
   <link href="//code.cdn.mozilla.net/fonts/fira.css" media="screen" rel="stylesheet">
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
   <!-- Style CSS-->
   <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -24,34 +24,39 @@
   </script>
 </head>
 <body>
-<div class="container-fluid header">
-  <a href="https://rada4you.org/" class="navbar-brand">Вони голосують для тебе</a>
-</div>
-<section class="container-fluid">
-  <div id="point"></div>
-  <!--<section class="content">-->
-    <div id="messages" class="text-center"></div>
-    <!--<input id="m" autocomplete="off" />-->
-    <div class="left-head"></div>
-      <div class="heading">
-
-        <h1 class="text-center">Який ти депутат?</h1>
-      </div>
-
-    <div class="right-head"></div>
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <button class="btn btn-info btn-block btn-lg" id ="start" >Пройти тест</button>
-        <button class="btn btn-info btn-block btn-lg" id="next" style="display:none;">Далі</button>
-      </div>
-    </div>
-  <!--</section>-->
-  <div class="row">
-    <div class="selector"></div>
+<div class="waper">
+  <div class="header">
+    <a href="https://rada4you.org/" class="brand">Вони голосують для тебе</a>
+    <button class="brand" id="about">Про тест</button>
   </div>
-</section>
-<footer>
+  <div id="point"></div>
+  <div class="heading">
+    <div class="left-head"></div>
+    <div class="centre-head">
+      <h1 class="text-center">Який ти депутат?</h1>
+    </div>
+    <div class="right-head"></div>
+  </div>
+  <div class="about">
+    <a href="#" class="close-thik"></a>
+    <span>Якщо б ти був/була депутатом, то як би голосував/ла?
+    <p>Пройди тест – дізнайся правду!</p>
+    <p>Результати згенеровано сервісом <br> <a href="https://rada4you.org" target="_blank">RADA4YOU.ORG</a> на базі парламентських даних.</span>
 
+  </div>
+  <div id="messages">
+
+  </div>
+  <button class="button" id ="start" >Пройти тест</button>
+  <div class="next">
+    <button class="button" id="next" style="display:none;">Далі</button>
+  </div>
+  <div class="selector"></div>
+  <div class="result"></div>
+</div>
+<footer class="footer">
+  <p class="text-center">Підготовлено в рамках Програми USAID “РАДА: підзвітність, відповідальність, демократичне парламентське представництво”, що виконується Фондом Східна Європа.
+    <br> &copy; Громадянська мережа ОПОРА 2017</p>
 </footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -60,14 +65,15 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
+  $( ".brand, .about" ).click(function() {
+    $( ".about" ).fadeToggle( "slow" );
+
+  });
   var i=1;
   $("#start").on("click", function(){
-    $('body').css("background-color", "#ffea8a");
-    $('.header').css("background-color", "#ffbb43");
-    $('.header').css("background-image", "url(img/hand.png)");
-    $('.header').css("background-size", "contain");
-    $('p').remove();
-    $('.heading').remove();
+    $('.waper').css("background-color", "#ffea8a");
+   $('span').css('color','#333;');
+    $('#point').remove();
     $('#start').remove();
     socket.emit('start test', $('#m').val());
 //    $('#next').show("slow")
@@ -115,6 +121,8 @@
     $(":radio").on("click", function () {
       if ($('#next').is(':hidden')) {
         $('#next').show("fast");
+        $('#next').css('display',"block !important");
+        $('#next').css('margin',"0 auto");
 //        console.log("Click");
       }
 
