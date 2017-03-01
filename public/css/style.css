@@ -154,6 +154,7 @@ html, body {
 #about{
     border: none;
     background-color: transparent;
+    margin: inherit;
 }
 h1.text-center {
     margin-top: 0;
