@@ -70,6 +70,9 @@ html, body {
     display: inline-block;
     font-size: 16px;
 }
+.button:hover {
+    background-color: #034f84;
+}
 .result {
     min-height: 100px;
     max-height: 100%;
