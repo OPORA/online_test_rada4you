@@ -18,10 +18,10 @@ html
                 div.row-image
                     - each val in head
                         div.image
-                            a(href="https://rada4you.org/mp/"+ val.id target="_blank")
+                            a(href="https://rada4you.org/mp/"+ val.id target="_blank" class="link-mp")
                                 img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/"+ val.id +".jpg", class="member-photo")
-                                p.text-center=val.first_name
-                                p.text-center=val.last_name
+                                p.text-mp=val.first_name
+                                p.text-mp=val.last_name
                 div.result
                     ul
                         - each val in head
@@ -35,10 +35,10 @@ html
                 div.row-image
                     - each i in foter
                         div.image
-                            a(href="https://rada4you.org/mp/"+ i.id target="_blank")
+                            a(href="https://rada4you.org/mp/"+ i.id target="_blank" class="link-mp")
                                 img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/" + i.id + ".jpg", class="member-photo")
-                                p.text-center=i.first_name
-                                p.text-center=i.last_name
+                                p.text-mp=i.first_name
+                                p.text-mp=i.last_name
         footer.footer
             p.text-center Підготовлено в рамках Програми USAID “РАДА: підзвітність, відповідальність, демократичне парламентське представництво”, що виконується Фондом Східна Європа.
                 <br> &copy; Громадянська мережа ОПОРА 2017

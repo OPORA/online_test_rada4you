@@ -295,6 +295,10 @@ input[type=radio]:checked + label:before {
     position: relative;
 }
 
-.image a {
-    margin: 0 auto;
+.text-mp  {
+    margin: 0;
+}
+.link-mp {
+    text-decoration: none;
+    color: #034f84;
 }
