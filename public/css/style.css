@@ -48,6 +48,7 @@ html, body {
 .right-head {
     display:inline-block;
     float: right;
+    position: absolute;
     background-image: url(../img/right.png);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -77,15 +78,24 @@ html, body {
     background-color: #034f84;
 }
 .result {
+    margin: 0 auto;
     min-height: 100px;
     max-height: 100%;
+    width: 80%;
+    max-width: 800px;
+
+    position: relative;
 }
 #start{
     display: block !important;
     margin: 0 auto;
 }
 
-@media screen and (max-width: 700px)  {
+@media (min-width: 300px)  {
+    #result{
+        width: 95%;
+        margin: 30px auto;
+    }
     #messages {
         position: relative;
         display: block;
@@ -110,7 +120,11 @@ html, body {
 
     }
 }
-@media screen and (min-width: 700px) {
+@media (min-width: 1300px)  {
+    #result{
+        width: 60%;
+        margin: 30px auto;
+    }
     #messages {
         position: relative;
         display: block;
@@ -169,30 +183,36 @@ h1.text-center {
 }
 
 .about {
+    display: none;
     border-radius: 130px;
     margin: auto;
     background-color: inherit;
-    background-image: url(../img/intro.png);
+    /*background-image: url(../img/intro.png);*/
+    border: 2px solid #034f84;
     background-size: 800px;
     background-position: center;
     background-repeat: no-repeat;
-    width:  100%;
+    width:  80%;
     /*max-width: 900px;*/
     height: 600px;
     top: 100px;
+    left: 10%;
     position: absolute;
     z-index: 1;
     line-height: 500px;
     text-align: center;
+    padding: 5px;
 }
 .close-thik {
+    border: 2px solid #034f84;
+    border-radius: 25px;
     color: #777;
     font: 14px/100% arial, sans-serif;
     position: absolute;
-    right: 40%;
+    right: 10px;
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;
-    top: 50px;
+    /*top: 50px;*/
 }
 .close-thik:after {
     content: '✖'; /* UTF-8 symbol */
@@ -264,8 +284,9 @@ input[type=radio]:checked + label:before {
 }
 
 .member-photo {
-    border-radius: 200px;
-    width: inherit;
+    border-radius: 20px;
+    width: 60%;
+    margin: 0 auto;
 }
 .selector {
     margin: 0 auto;
@@ -273,9 +294,21 @@ input[type=radio]:checked + label:before {
     width: 60%;
 }
 .row-image {
-    display: -webkit-box;
+    text-align:center;
+    display: block;
     width: 100%;
+    position: inherit;
+    /*margin: 0 auto;*/
 }
 .image {
-    width: 20%;
+    display: inline-block;
+    position: relative;
+}
+
+.text-mp  {
+    margin: 0;
+}
+.link-mp {
+    text-decoration: none;
+    color: #034f84;
 }
