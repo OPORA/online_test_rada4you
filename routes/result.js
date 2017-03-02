@@ -13,7 +13,7 @@ router.use('/',function(req, res, next) {
     function readResult(error, result, fields) {
         if (error) throw error;
         if (result.length == 0){
-            res.status(404).send("NOT FOUND");
+            res.render('404');
         };
         checkResult(result, function (data){
             // console.log(data.policy.length);

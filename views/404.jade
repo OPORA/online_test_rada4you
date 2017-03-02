@@ -1,0 +1,46 @@
+doctype basic
+html
+    head
+        link(href='//code.cdn.mozilla.net/fonts/fira.css', rel='stylesheet')
+        link(href='/css/style.css', rel='stylesheet')
+        script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        title Який ти депутат? Вони голосують для тебе
+        meta(property="og:url" content="http://ot.oporaua.org/")
+        meta(property="og:type" content="website")
+        meta(property="og:title"         content='Тест "Який ти депутат?"')
+        meta(property="og:description"   content="Мій результат тесту! А на кого з нардепів ти найбільше схожий? Пройди тест - ідентифікуй себе.")
+        meta(property="og:image"         content="http://ot.oporaua.org/img/wmp.jpg")
+    body(style="background-color: #ffea8a; color: #696969")
+        div.waper
+            div.header
+                a(href="https://rada4you.org/" class="brand") Вони голосують для тебе
+                button(class="brand" id="about") Про тест
+            div.heading
+                div.left-head
+                div.centre-head
+                    h1.text-center Який ти депутат?
+                div.right-head
+            div.about
+                a(href="#" class="close-thik")
+                span Якщо б ти був/була депутатом, то як би голосував/ла?
+                    <br> тест – дізнайся правду!
+                    <br> Результати згенеровано сервісом
+                    <br> <a href="https://rada4you.org" target="_blank">RADA4YOU.ORG</a>
+                    <br> на базі парламентських даних.
+
+            div#result
+
+                    h2.text-center Хммм... Система не знайшла результат.
+                    div#messages
+                        a(href="/")
+                            img(src="img/not_mp.png", class="not_mp")
+                            buton.button Пройти знову
+                    //-div.fb
+                        div(class="fb-share-button" data-href="http://ot.oporaua.org/" data-layout="button" data-size="small" data-mobile-iframe="true")
+                            a(class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")
+        footer.footer
+            p.text-center Підготовлено в рамках Програми USAID “РАДА: підзвітність, відповідальність, демократичне парламентське представництво”, що виконується Фондом Східна Європа.
+                <br> &copy; Громадянська мережа ОПОРА 2017
+    script $(".brand, .about").click(function() {$( ".about" ).fadeToggle( "slow" );});
+    //-div#fb-root
+    //-script (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.8";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
