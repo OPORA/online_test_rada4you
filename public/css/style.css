@@ -46,7 +46,7 @@ html, body {
 .right-head {
     display:inline-block;
     float: right;
-    position: fixed;
+    position: absolute;
     background-image: url(../img/right.png);
     background-size: 100%;
     background-repeat: no-repeat;
