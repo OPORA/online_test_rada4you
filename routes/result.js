@@ -56,7 +56,7 @@ router.use('/',function(req, res, next) {
             // Return result in web page;
             
              // res.send({head: sart_mps, foter: end_mps});
-             res.render('result', {  head: sart_mps, foter: end_mps});
+             res.render('result', {  head: sart_mps, foter: end_mps, id: req.query.test });
         });
     }
     function checkResult(data, callback) {
