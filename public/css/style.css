@@ -37,10 +37,12 @@ html, body {
     background-repeat: no-repeat;
     width: 20%;
     min-height: 110px;
+    margin-top: 20px;
 }
 .centre-head {
     display:inline-block;
     width: 60%;
+    margin-top: 20px;
 
 }
 .right-head {
@@ -51,6 +53,7 @@ html, body {
     background-repeat: no-repeat;
     width: 20%;
     min-height: 110px;
+    margin-top: 20px;
 }
 .waper {
     box-sizing: border-box;
@@ -150,6 +153,7 @@ html, body {
 }
 .heading {
     background-color: #ffbb43;
+    height: 120px;
 }
 #about{
     border: none;
