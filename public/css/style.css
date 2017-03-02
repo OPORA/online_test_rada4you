@@ -167,7 +167,7 @@ html, body {
 }
 .heading {
     background-color: #ffbb43;
-    height: 120px;
+    height: 10%;
 }
 #about{
     border: none;
@@ -186,12 +186,12 @@ h1.text-center {
     display: none;
     border-radius: 130px;
     margin: auto;
-    background-color: inherit;
-    /*background-image: url(../img/intro.png);*/
+    background-color: rgb(255, 234, 138);
     border: 2px solid #034f84;
     background-size: 800px;
     background-position: center;
     background-repeat: no-repeat;
+    color: #696969;
     width:  80%;
     /*max-width: 900px;*/
     height: 600px;
@@ -201,7 +201,10 @@ h1.text-center {
     z-index: 1;
     line-height: 500px;
     text-align: center;
-    padding: 5px;
+    padding: 50px 5px 0 5px;
+    font-size: 27pt;
+    opacity: 0.9;
+
 }
 .close-thik {
     border: 2px solid #034f84;
