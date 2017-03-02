@@ -3,6 +3,7 @@ html
     head
         link(href='//code.cdn.mozilla.net/fonts/fira.css', rel='stylesheet')
         link(href='/css/style.css', rel='stylesheet')
+        script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
         title Який ти депутат? Вони голосують для тебе
     body(style="background-color: #ffea8a; color: #696969")
         div.waper
@@ -14,6 +15,15 @@ html
                 div.centre-head
                     h1.text-center Який ти депутат?
                 div.right-head
+            div.about
+                a(href="#" class="close-thik")
+                span
+                    p Якщо б ти був/була депутатом, то як би голосував/ла?
+                    p тест – дізнайся правду!
+                    p Результати згенеровано сервісом
+                    p <a href="https://rada4you.org" target="_blank">RADA4YOU.ORG</a>
+                    p на базі парламентських даних.
+
             div#result
                 div.row-image
                     - each val in head
@@ -42,3 +52,5 @@ html
         footer.footer
             p.text-center Підготовлено в рамках Програми USAID “РАДА: підзвітність, відповідальність, демократичне парламентське представництво”, що виконується Фондом Східна Європа.
                 <br> &copy; Громадянська мережа ОПОРА 2017
+    script
+        $(".brand, .about").click(function() {$( ".about" ).fadeToggle( "slow" );});

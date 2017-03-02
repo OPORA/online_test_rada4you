@@ -179,30 +179,35 @@ h1.text-center {
 }
 
 .about {
+    display: none;
     border-radius: 130px;
     margin: auto;
     background-color: inherit;
-    background-image: url(../img/intro.png);
+    /*background-image: url(../img/intro.png);*/
+    border: 2px solid #034f84;
     background-size: 800px;
     background-position: center;
     background-repeat: no-repeat;
-    width:  100%;
+    width:  80%;
     /*max-width: 900px;*/
     height: 600px;
     top: 100px;
+    left: 10%;
     position: absolute;
     z-index: 1;
     line-height: 500px;
     text-align: center;
 }
 .close-thik {
+    border: 2px solid #034f84;
+    border-radius: 25px;
     color: #777;
     font: 14px/100% arial, sans-serif;
     position: absolute;
-    right: 40%;
+    right: 10px;
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;
-    top: 50px;
+    /*top: 50px;*/
 }
 .close-thik:after {
     content: '✖'; /* UTF-8 symbol */
