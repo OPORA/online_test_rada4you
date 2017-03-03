@@ -81,12 +81,12 @@ io.on('connection', function(socket){
         else {
           var text = "Визначаємо сумісність!";
           io.to(user_id).emit('finish message', text);
+          setTimeout(function(){
+            var destination = '/result?test='+ user_id;
+            io.to(user_id).emit('redirect', destination);
+          }, 3000);
         }
       });
-    });
-    socket.on('result', function() {
-      var destination = '/result?test='+ user_id;
-      io.to(user_id).emit('redirect', destination);
     });
   });
 });
