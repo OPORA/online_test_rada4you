@@ -73,6 +73,7 @@ html, body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    outline: none;
 }
 .button:hover {
     background-color: #034f84;
@@ -172,6 +173,7 @@ html, body {
     background-color: transparent;
     margin: inherit;
     float: right;
+    outline: none;
 }
 h1.text-center {
     margin-top: 0;
@@ -221,6 +223,7 @@ h1.text-center {
     right: -20px;
     text-decoration: none;
     text-shadow: 0 1px 0 #fff;
+    outline: none;
     /*top: 50px;*/
 }
 .close-thik:after {
@@ -333,6 +336,7 @@ a .button {
     width: 150px;
     margin: 0 auto;
     text-decoration: none;
+    outline: none;
 }
 a {
     text-decoration: none;
