@@ -16,5 +16,11 @@
     "request": "^2.79.0",
     "socket.io": "^1.7.2",
     "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-minify": "0.0.15",
+    "gulp-rename": "^1.2.2"
   }
 }
