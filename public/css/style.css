@@ -347,3 +347,34 @@ a {
     margin-right: 1%;
     height: 15px;
 }
+
+.content {
+    width: 70%;
+    height: 100%;
+    min-height: 800px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #000000;
+}
+.warp-item {
+    position: relative;
+    background-image: url(../img/noun.png);
+    background-size: 100px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    border-radius: 40px;
+    /*left: 50px;*/
+    top: 40px;
+    width: 100px;
+    min-height: 200px;
+}
+.block {
+    position: relative;
+    background-color: #ffea8a;
+    margin: 0 auto;
+    top: 10px;
+    width: 90px;
+    height: 5px;
+
+}

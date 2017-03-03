@@ -4,7 +4,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var client = require("./config/mysql");
 var result = require("./routes/result");
-var sleep = require('sleep');
 
 app.use(express.static('public'));
 app.set('views', './views');
@@ -82,11 +81,12 @@ io.on('connection', function(socket){
         else {
           var text = "Визначаємо сумісність!";
           io.to(user_id).emit('finish message', text);
-          sleep.sleep(2);
-          var destination = '/result?test='+ user_id;
-          io.to(user_id).emit('redirect', destination);
         }
       });
+    });
+    socket.on('result', function() {
+      var destination = '/result?test='+ user_id;
+      io.to(user_id).emit('redirect', destination);
     });
   });
 });

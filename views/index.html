@@ -18,6 +18,7 @@
   <!-- Style CSS-->
   <link href="/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css">
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -148,9 +149,32 @@
     window.location.href = destination;
   });
   socket.on('finish message', function(msg){
-    $('#messages').append($('<h1 class="query">').text(msg));
+
+    $('#messages').html('<div class="warp-item"><div class="block"></div></div>');
+    $('#messages').prepend($('<h1 class="query">').text(msg));
     $( ".selector" ).remove();
     $('#next').remove();
+    function expectation () {
+      $( ".block" ).animate({ "top": "+=170px",
+                "backgroundColor": "#FF5733" },
+              "slow",
+              function() {
+                $(".block" ).animate({"backgroundColor": "#ffea8a;","top":"-=170px"},
+                        "fast",
+                        function() {
+                          expectation();
+                        });
+              } );
+      $(".warp-item").animate( {"backgroundColor": "#FF5733" },
+              "5000",
+              function () {
+                $(".warp-item").animate( {"backgroundColor": "#ffea8a" },
+                        "fast" )
+              })
+    }
+    expectation();
+
+    socket.emit('result');
   });
 
   (function(d, s, id) {
