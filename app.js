@@ -12,6 +12,10 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 app.use('/result', result);
+app.use(function(req, res, next) {
+    res.status(404).render('404');
+});
+
 
 io.on('connection', function(socket){
   socket.on('start test', function(){
