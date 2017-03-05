@@ -1,5 +1,5 @@
 var express = require('express');
-var client = require("../config/mysql");
+var pool = require("../config/mysql");
 var router = express.Router();
 var getMpsAll = require('./../lib/getmpsall');
 var getMaxOfArray = require('./../lib/getMaxOfArray');
@@ -11,7 +11,11 @@ router.use('/',function(req, res, next) {
     } else {
         getResult(req.query.test);
         function getResult(user_id) {
-            client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.id_query != -1 and a.id_query != -2 and a.user_id=?', user_id, readResult);
+            pool.getConnection(function (err, client) {
+                client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.id_query != -1 and a.id_query != -2 and a.user_id=?', user_id, readResult);
+                client.release();
+            });
+
         }
         function readResult(error, result, fields) {
             if (error) throw error;
@@ -96,10 +100,13 @@ router.use('/',function(req, res, next) {
             });
         }
         function queryPolicy(policy_id, collback) {
-            client.query('SELECT * FROM policy WHERE id = ?', policy_id, function readPolicy(error, result, fields) {
-                if (error) throw error;
-                collback(result);
-            })
+            pool.getConnection(function (err, client) {
+                client.query('SELECT * FROM policy WHERE id = ?', policy_id, function(error, result, fields) {
+                    if (error) throw error;
+                    collback(result);
+                });
+                client.release();
+            });
         }
     }
 
