@@ -25,6 +25,13 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-70897601-2', 'auto');
+    ga('send', 'pageview');
   </script>
 </head>
 <body>
@@ -38,14 +45,17 @@
     <div class="left-head"></div>
     <div class="centre-head">
       <h1 class="text-center">Який ти депутат?</h1>
+      <p class="text-center" id="text">Уявіть себе депутатом Ради у цьому скликанні. На кого із 422 обранців ви були б схожі?</p>
     </div>
     <div class="right-head"></div>
   </div>
   <div class="about">
     <a href="#" class="close-thik"></a>
-    <span>Якщо б ти був/була депутатом, то як би голосував/ла?<br>
-    Пройди тест – дізнайся правду!<br>
-    Результати згенеровано сервісом <br> <a href="https://rada4you.org" target="_blank">RADA4YOU.ORG</a> на базі парламентських даних.</span>
+    <span class="text-center"><h2>Про тест РАДА4Ю</h2>
+      Уявіть себе депутатом Ради у цьому скликанні. На кого із 422 обранців ви були б схожі? <br>
+    Тест “Який ти депутат?” - це  35 різних політик з онлайн-сервісу <a href="rada4you.org" target="_blank">Rada4you.org</a>, на базі яких розроблено питальник. <br> Пропонуєм вам відповісти на 15 питань, а наш робот проведе непрості калькуляції і підготує список найбільше і найменше схожих на вас нардепів. <br>
+    Перевірте себе, результат може стати несподіванкою для вас &#128527;. <br> Є питання? Пишіть нам на сторінку фб <a href="https://www.facebook.com/DorogiDeputaty" target="_blank">«Дорогі депутати»</a> чи на пошту <a href="mailto:rada4you@opora.org.ua">rada4you@opora.org.ua</a>
+    </span>
   </div>
   <div id="messages">
   </div>

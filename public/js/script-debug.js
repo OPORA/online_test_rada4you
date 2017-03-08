@@ -7,6 +7,7 @@ $("#start").on("click", function(){
     $('span').css('color','#333;');
     $('#point').remove();
     $('#start').remove();
+    $('#text').remove();
     socket.emit('start test', $('#m').val());
     return false;
 });

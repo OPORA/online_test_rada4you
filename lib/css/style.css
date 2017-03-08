@@ -194,8 +194,8 @@ h1.text-center {
     color: #696969;
     width:  80%;
     /*max-width: 900px;*/
-    height: 100%;
-    max-height: 500px;
+    height: auto;
+    max-height: 100%;
     top: 100px;
     left: 10%;
     position: absolute;
@@ -203,16 +203,16 @@ h1.text-center {
     line-height: 500px;
     text-align: center;
     padding: 10px 5px;
-
+    overflow: visible;
     opacity: 0.9;
 }
 .about span {
-    position: absolute;
-    top: 20%;
-    left: 0;
+    /*position: absolute;*/
+    /*top: 20%;*/
+    /*left: 0;*/
     width: 90%;
-    font-size: 1.5em;
-    padding: 5%;
+    line-height: 1.5;
+    /*padding: 1%;*/
 }
 .close-thik {
     border: 2px solid #034f84;
