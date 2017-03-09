@@ -1,21 +1,18 @@
 var express = require('express');
-var pool = require("../config/mysql");
+var client = require("../config/mysql");
 var router = express.Router();
 var getMpsAll = require('./../lib/getmpsall');
 var getMaxOfArray = require('./../lib/getMaxOfArray');
 /* GET result listing. */
 
 router.use('/',function(req, res, next) {
+    
     if (req.query.test === undefined) {
         res.status(404).render('404');
     } else {
         getResult(req.query.test);
         function getResult(user_id) {
-            pool.getConnection(function (err, client) {
-                client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.id_query != -1 and a.id_query != -2 and a.user_id=?', user_id, readResult);
-                client.release();
-            });
-
+                client.query('SELECT * FROM answers AS a LEFT JOIN question AS q ON a.id_query=q.id WHERE a.id_query != -1 and a.id_query != -2 and a.user_id=? ORDER BY q.id', user_id, readResult);
         }
         function readResult(error, result, fields) {
             if (error) throw error;
@@ -35,17 +32,22 @@ router.use('/',function(req, res, next) {
                     // console.log(no_votes_list);
                     // console.log(index);
                     // console.log(item[0]);
+                   
                     item.forEach(function (r, i, a) {
                         // console.log(i);
+                        
                         var mp = data.mps[0].find( function (m) { return m.id == r.person_id });
+                       
                         if (mp != undefined) {
-                            if (!no_votes_list.includes(r.person_id)) {
+                            if (! no_votes_list.includes(r.person_id)) {
                                 mp.points = mp.points + r.label * data.changer_array[index];
                             }
                             if (Math.abs(data.changer_array[index]) != 0) {
                                 mp.max_points = mp.max_points + Math.abs(3 * data.changer_array[index]);
                             }
-                            mp.percent = mp.points / mp.max_points
+                            
+                            mp.percent = mp.points / mp.max_points;
+                           
                         }
                         // console.log(mp);
                     });
@@ -53,7 +55,7 @@ router.use('/',function(req, res, next) {
                 var max_points  = data.mps[0].map(function (i) { return i.max_points});
                 var max_point =  (getMaxOfArray(max_points)/3) * 2;
                 var mps = data.mps[0].filter(function (mp) { return mp.max_points >= max_point });
-                // sort percent, presence_percent
+                //sort percent, presence_percent
                 mps.sort(function(a, b) {
                     return (a.percent<b.percent) - (b.percent<a.percent) || (a.presence_percent<b.presence_percent) - (b.presence_percent<a.presence_percent);
                 });
@@ -61,9 +63,11 @@ router.use('/',function(req, res, next) {
                 var sart_mps = mps.slice(0, 5);
                 var end_mps = mps.slice(-5);
                 // Return result in web page;
-
+                // res.send(data);
                 // res.send({head: sart_mps, foter: end_mps});
+                
                 res.render('result', {  head: sart_mps, foter: end_mps, id: req.query.test });
+
             });
         }
         function checkResult(data, callback) {
@@ -100,13 +104,10 @@ router.use('/',function(req, res, next) {
             });
         }
         function queryPolicy(policy_id, collback) {
-            pool.getConnection(function (err, client) {
-                client.query('SELECT * FROM policy WHERE id = ?', policy_id, function(error, result, fields) {
+                client.query('SELECT * FROM policy WHERE id = ? order by person_id asc', policy_id, function(error, result, fields) {
                     if (error) throw error;
                     collback(result);
                 });
-                client.release();
-            });
         }
     }
 

@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var pool = require("./config/mysql");
+var client = require("./config/mysql");
 var result = require("./routes/result");
 
 app.use(express.static('public'));
@@ -36,38 +36,32 @@ io.on('connection', function(socket){
         policy_id: null,
         agreement: null } );
       var pending = 15;
-      pool.getConnection(function (err, client) {
-          var policy = client.query('SELECT DISTINCT `policy_id` FROM `question` ORDER BY RAND() LIMIT 15');
+      var policy = client.query('SELECT DISTINCT `policy_id` FROM `question` ORDER BY RAND() LIMIT 15');
 
-          policy.on('error', function(err) {
+      policy.on('error', function(err) {
+          throw err;
+      });
+      policy.on('result', function(row) {
+          var query = client.query('SELECT * FROM `question` WHERE policy_id = ' + row.policy_id + ' ORDER BY RAND() LIMIT 1');
+          query.on('error', function(err) {
               throw err;
           });
-          policy.on('result', function(row) {
-              var query = client.query('SELECT * FROM `question` WHERE policy_id = ' + row.policy_id + ' ORDER BY RAND() LIMIT 1');
-              query.on('error', function(err) {
-                  throw err;
-              });
-              query.on('result', function(row) {
+          query.on('result', function(row) {
 
-                  socket.questions.push(row);
-                  if( 0 === --pending ) {
-                      cb(socket.questions); //callback if all queries are processed
-                  }
-              });
+              socket.questions.push(row);
+              if( 0 === --pending ) {
+                  cb(socket.questions); //callback if all queries are processed
+              }
           });
-          client.release();
       });
     }
     function sendQuery(query, id) {
       io.to(user_id).emit('question message', [query, id]);
     }
     function  saveAnswer(id_query, answer) {
-      pool.getConnection(function (err, client) {
-          client.query('INSERT INTO answers SET ?', {id_query: id_query, answer: answer, user_id: socket.id}, function (error, results, fields) {
-              if (error) throw error;
-              // console.log(results.insertId);
-          });
-          client.release();
+      client.query('INSERT INTO answers SET ?', {id_query: id_query, answer: answer, user_id: socket.id}, function (error, results, fields) {
+          if (error) throw error;
+          // console.log(results.insertId);
       });
     }
     getQuery(function (query) {
