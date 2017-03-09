@@ -64,7 +64,7 @@ html
                         ul
                             - each val in head
                                 -percent=(val.percent*100).toFixed(0)
-                                if percent != 0
+                                if percent > 0
                                     li #{val.first_name} #{val.last_name} (#{val.party}) #{percent} %
                     div.row-image
                         h2 Твої опоненти
@@ -79,7 +79,7 @@ html
                         ul
                             - each val in foter
                                 -percent=(val.percent*100).toFixed(0)
-                                if percent != 0
+                                if percent <= 0
                                     li #{val.first_name} #{val.last_name} (#{val.party}) #{percent} %
                     div
                         a(href="/")
