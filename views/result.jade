@@ -57,7 +57,7 @@ html
                             if ! isNaN(val.percent) & val.percent != 0
                                 div.image
                                     a(href="https://rada4you.org/mp/"+ val.id target="_blank" class="link-mp")
-                                        img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/"+ val.id +".jpg", class="member-photo")
+                                        img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/"+ val.id +".jpg", alt=val.first_name + " " + val.last_name, title=val.first_name + " " + val.last_name, class="member-photo")
                                         p.text-mp=val.first_name
                                         p.text-mp=val.last_name
                     div.result
@@ -72,7 +72,7 @@ html
                             if ! isNaN(i.percent) & i.percent != 0
                                 div.image
                                     a(href="https://rada4you.org/mp/"+ i.id target="_blank" class="link-mp")
-                                        img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/" + i.id + ".jpg", class="member-photo")
+                                        img(src="https://s3.amazonaws.com/ukraine-verkhovna-rada-deputy-images/" + i.id + ".jpg", , alt=i.first_name + " " + i.last_name, title=i.first_name + " " + i.last_name, class="member-photo")
                                         p.text-mp=i.first_name
                                         p.text-mp=i.last_name
                     div.result
