@@ -34,6 +34,9 @@ html
                 div.left-head
                 div.centre-head
                     h1.text-center Який ти депутат?
+                    if ! isNaN(head[0].percent)
+                        h2.text-center Клікни на фото - дізнайся про нардепа більше
+                    end
                 div.right-head
             div.about
                 a(href="#" class="close-thik")
